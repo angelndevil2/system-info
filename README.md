@@ -6,7 +6,7 @@
 
 ## run
 
-        /path/to/system-info-0.0.1/bin/hw-info
+        /path/to/system-info-0.0.1/bin/system-info
 
 ## register to local maven
 
