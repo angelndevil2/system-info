@@ -22,7 +22,7 @@ sourceSets {
 
         // refer
         // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html#org.gradle.api.tasks.testing.Test:systemProperties
-        systemProperty 'java.library.path', 'lib'
+        systemProperty 'java.library.path', 'src/dist/lib'
     }
 }
 
