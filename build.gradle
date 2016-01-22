@@ -6,7 +6,7 @@ apply plugin: 'maven'
 apply plugin: 'application'
 
 sourceCompatibility = 1.5
-mainClassName = "com.tistory.devilnangel.util.HwInfo"
+mainClassName = "com.tistory.devilnangel.util.SystemInfo"
 
 repositories {
     mavenCentral()
@@ -32,7 +32,7 @@ jar {
         attributes("Implementation-Title": project.group + ":" + project.name,
                 "Implementation-Version": version,
                 "Class-Path": "sigar.jar",
-                "Main-Class": project.group+"."+"HwInfo"
+                "Main-Class": project.group+"."+"SystemInfo"
         )
     }
 }
