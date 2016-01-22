@@ -5,7 +5,7 @@ import org.hyperic.sigar.*;
 /**
  * @author k, Created on 16. 1. 19.
  */
-public class HwInfo {
+public class SystemInfo {
 
     public static final String OS_NAME = "Os Name";
     public static final String CPU_INFO = "CPU Info";
@@ -27,6 +27,7 @@ public class HwInfo {
     public String getOsName() {
         StringBuilder sb = new StringBuilder();
 
+        os_.isWin32("aa");
         sb.append(os_.getName());
         sb.append(" ");
         sb.append(os_.getVersion());
@@ -85,20 +86,28 @@ public class HwInfo {
         return sb.toString();
     }
 
+    /**
+     *
+     * @return true if window os
+     */
+    public boolean isWindow() {
+        return OperatingSystem.IS_WIN32;
+    }
+
     public static void main(String[] args) {
 
-        HwInfo hw_info = new HwInfo();
+        SystemInfo sys_info = new SystemInfo();
         StringBuilder sb = new StringBuilder();
 
         sb.append(OS_NAME);
         sb.append(" : ");
-        sb.append(hw_info.getOsName());
+        sb.append(sys_info.getOsName());
         sb.append('\n');
 
         sb.append(CPU_INFO);
         sb.append(" : ");
         try {
-            sb.append(hw_info.getCpuInfo());
+            sb.append(sys_info.getCpuInfo());
         } catch (SigarException e) {
             sb.append("null");
         }
@@ -107,7 +116,7 @@ public class HwInfo {
         sb.append(MEM_INFO);
         sb.append(" : ");
         try {
-            sb.append(hw_info.getMemInfo());
+            sb.append(sys_info.getMemInfo());
         } catch (SigarException e) {
             sb.append("null");
         }
