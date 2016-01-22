@@ -1,4 +1,4 @@
-# hw-info
+# system-info
 
 ## make zip distribution
 
@@ -6,7 +6,7 @@
 
 ## run
 
-        /path/to/hw-info-0.1/bin/hw-info
+        /path/to/system-info-0.0.1/bin/hw-info
 
 ## register to local maven
 
