@@ -1,0 +1,56 @@
+group 'com.tistory.devilnangel.util'
+version '0.0.1'
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'application'
+
+sourceCompatibility = 1.5
+mainClassName = "com.tistory.devilnangel.util.HwInfo"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile ('org.fusesource:sigar:1.6.4')
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+sourceSets {
+    test {
+
+        // refer
+        // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html#org.gradle.api.tasks.testing.Test:systemProperties
+        systemProperty 'java.library.path', 'lib'
+    }
+}
+
+jar {
+
+    manifest {
+        attributes("Implementation-Title": project.group + ":" + project.name,
+                "Implementation-Version": version,
+                "Class-Path": "sigar.jar",
+                "Main-Class": project.group+"."+"HwInfo"
+        )
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+
+            repository(url: "file://localhost/"+System.properties['user.home']+"/.m2/repository/")
+            pom.project {
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+            }
+        }
+    }
+}
+
