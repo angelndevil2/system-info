@@ -1,4 +1,4 @@
-package com.tistory.devilnangel.util;
+package com.tistory.devilnangel.system;
 
 import org.hyperic.sigar.*;
 

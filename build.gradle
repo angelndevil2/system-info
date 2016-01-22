@@ -1,4 +1,4 @@
-group 'com.tistory.devilnangel.util'
+group 'com.tistory.devilnangel'
 version '0.0.1'
 
 apply plugin: 'java'
@@ -6,7 +6,7 @@ apply plugin: 'maven'
 apply plugin: 'application'
 
 sourceCompatibility = 1.5
-mainClassName = "com.tistory.devilnangel.util.SystemInfo"
+mainClassName = "com.tistory.devilnangel.system.SystemInfo"
 
 repositories {
     mavenCentral()
