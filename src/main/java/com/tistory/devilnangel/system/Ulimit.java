@@ -1,4 +1,4 @@
-package com.tistory.devilnangel.common;
+package com.tistory.devilnangel.system;
 
 import com.tistory.devilnangel.util.SigarInstances;
 import org.hyperic.sigar.ResourceLimit;
