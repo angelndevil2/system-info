@@ -1,5 +1,6 @@
 package com.tistory.devilnangel.test;
 
+import com.tistory.devilnangel.common.Unit;
 import com.tistory.devilnangel.system.SystemInfo;
 import org.hyperic.sigar.SigarException;
 import org.junit.Test;
@@ -21,7 +22,7 @@ public class SystemInfoTest {
 
     @Test
     public void getMemInfo() throws SigarException {
-        System.out.println(SystemInfo.getMemInfo());
+        System.out.println(SystemInfo.getMemInfo(Unit.GB));
     }
 
     @Test
