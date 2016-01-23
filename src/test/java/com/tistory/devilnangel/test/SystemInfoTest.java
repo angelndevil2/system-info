@@ -9,25 +9,23 @@ import org.junit.Test;
  */
 public class SystemInfoTest {
 
-    private SystemInfo sys_info_ = new SystemInfo();
-
     @Test
     public void getOsName() {
-        System.out.println(sys_info_.getOsName());
+        System.out.println(SystemInfo.getOsName());
     }
 
     @Test
     public void getCpuInfo() throws SigarException {
-        System.out.println(sys_info_.getCpuInfo());
+        System.out.println(SystemInfo.getCpuInfo());
     }
 
     @Test
     public void getMemInfo() throws SigarException {
-        System.out.println(sys_info_.getMemInfo());
+        System.out.println(SystemInfo.getMemInfo());
     }
 
     @Test
     public void isWindow() {
-        System.out.println(sys_info_.isWindow());
+        System.out.println(SystemInfo.isWindow());
     }
 }
