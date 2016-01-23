@@ -24,6 +24,8 @@ sourceSets {
         // refer
         // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html#org.gradle.api.tasks.testing.Test:systemProperties
         systemProperty 'java.library.path', 'src/dist/lib'
+        environment 'PATH', System.getenv('PATH')+':src/dist/bin'
+
     }
 }
 

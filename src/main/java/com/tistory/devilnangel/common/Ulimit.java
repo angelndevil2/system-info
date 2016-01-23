@@ -1,9 +1,9 @@
 package com.tistory.devilnangel.common;
 
-import com.tistory.devilnangel.util.SystemRun;
-import org.apache.commons.exec.CommandLine;
-
-import java.io.IOException;
+import com.tistory.devilnangel.util.SigarInstances;
+import org.hyperic.sigar.ResourceLimit;
+import org.hyperic.sigar.Sigar;
+import org.hyperic.sigar.SigarException;
 
 /**
  *
@@ -13,23 +13,54 @@ import java.io.IOException;
  */
 public class Ulimit {
 
-    public static final String ULIMIT_COMMAND = "ulimit";
-    public static final String OPTION_OPEN_FILES = "-n";
+    private static final Sigar sigar_ = SigarInstances.SIGAR;
+    private ResourceLimit r_limit_;
+
+    public Ulimit() throws SigarException {
+        r_limit_ = sigar_.getResourceLimit();
+    }
 
     /**
-     * block while command 'ulimit -n' is running
-     *
-     * @return shell result string of "ulimit -n"
-     * @throws IOException
-     * @throws InterruptedException
+     * @return open file hard limit
      */
-    public String getOpenFiles() throws IOException, InterruptedException {
+    public long getMaxOpenFilesHardLimit() {
+        return r_limit_.getOpenFilesMax();
+    }
 
-        CommandLine ulimit_open_files = new CommandLine(ULIMIT_COMMAND);
-        ulimit_open_files.addArgument(OPTION_OPEN_FILES);
+    /**
+     * @return max user process hard limit
+     */
+    public long getMaxUserProcessHardLimit() {
+        return r_limit_.getProcessesMax();
+    }
 
-        SystemRun.ResultHandler result_handler = SystemRun.execCommand(ulimit_open_files);
-        result_handler.waitFor();
-        return result_handler.getResultString();
+    /**
+     *
+     * @return max stack size hard limit, -1 = unlimited
+     */
+    public long getMaxStackSizeHardLimit() {
+        return r_limit_.getStackMax();
+    }
+
+    /**
+     * @return open file soft limit
+     */
+    public long getMaxOpenFilesSoftLimit() {
+        return r_limit_.getOpenFilesMax();
+    }
+
+    /**
+     * @return max user process soft limit
+     */
+    public long getMaxUserProcessSoftLimit() {
+        return r_limit_.getProcessesMax();
+    }
+
+    /**
+     *
+     * @return max stack size soft limit, -1 = unlimited
+     */
+    public long getMaxStackSizeSoftLimit() {
+        return r_limit_.getStackMax();
     }
 }

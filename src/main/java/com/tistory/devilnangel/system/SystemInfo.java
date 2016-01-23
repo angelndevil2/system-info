@@ -1,5 +1,6 @@
 package com.tistory.devilnangel.system;
 
+import com.tistory.devilnangel.util.SigarInstances;
 import org.hyperic.sigar.*;
 
 /**
@@ -13,7 +14,7 @@ public class SystemInfo {
     public static final String CPU_INFO = "CPU Info";
     public static final String MEM_INFO = "Mem Info";
 
-    private static final Sigar sigar_ = new Sigar();
+    private static final Sigar sigar_ = SigarInstances.SIGAR;
     private static final OperatingSystem os_ = OperatingSystem.getInstance();
 
     /**

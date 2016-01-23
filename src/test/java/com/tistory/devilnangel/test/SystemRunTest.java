@@ -14,7 +14,11 @@ public class SystemRunTest {
         try {
             SystemRun.ResultHandler handler = SystemRun.execCommand("ls");
             handler.waitFor();
-            System.out.println(handler.getResultString());
+            if (handler.getExitValue() != 0) {
+                System.out.println("exit with :" + handler.getException().toString());
+            } else {
+                System.out.println(handler.getResultString());
+            }
         } catch (Throwable t) {
             t.printStackTrace();
         }
