@@ -13,8 +13,8 @@ public class SystemInfo {
     public static final String CPU_INFO = "CPU Info";
     public static final String MEM_INFO = "Mem Info";
 
-    private final Sigar sigar_ = new Sigar();
-    private final OperatingSystem os_ = OperatingSystem.getInstance();
+    private static final Sigar sigar_ = new Sigar();
+    private static final OperatingSystem os_ = OperatingSystem.getInstance();
 
     /**
      *
@@ -26,7 +26,7 @@ public class SystemInfo {
      * <br />
      * ex. Linux 3.10.0-327.3.1.el7.x86_64 (CentOS 7.2.1511)
      */
-    public String getOsName() {
+    public static String getOsName() {
         StringBuilder sb = new StringBuilder();
 
         os_.isWin32("aa");
@@ -54,7 +54,7 @@ public class SystemInfo {
      *
      * @throws SigarException
      */
-    public String getCpuInfo() throws SigarException {
+    public static String getCpuInfo() throws SigarException {
         CpuInfo[] cpus = sigar_.getCpuInfoList();
 
         for (CpuInfo ci : cpus) {
@@ -77,7 +77,7 @@ public class SystemInfo {
      * {@link Mem#getTotal()}
      * @throws SigarException
      */
-    public String getMemInfo() throws SigarException {
+    public static String getMemInfo() throws SigarException {
 
         Mem mem = sigar_.getMem();
 
@@ -92,24 +92,23 @@ public class SystemInfo {
      *
      * @return true if window os
      */
-    public boolean isWindow() {
+    public static boolean isWindow() {
         return OperatingSystem.IS_WIN32;
     }
 
     public static void main(String[] args) {
 
-        SystemInfo sys_info = new SystemInfo();
         StringBuilder sb = new StringBuilder();
 
         sb.append(OS_NAME);
         sb.append(" : ");
-        sb.append(sys_info.getOsName());
+        sb.append(SystemInfo.getOsName());
         sb.append('\n');
 
         sb.append(CPU_INFO);
         sb.append(" : ");
         try {
-            sb.append(sys_info.getCpuInfo());
+            sb.append(SystemInfo.getCpuInfo());
         } catch (SigarException e) {
             sb.append("null");
         }
@@ -118,7 +117,7 @@ public class SystemInfo {
         sb.append(MEM_INFO);
         sb.append(" : ");
         try {
-            sb.append(sys_info.getMemInfo());
+            sb.append(SystemInfo.getMemInfo());
         } catch (SigarException e) {
             sb.append("null");
         }
