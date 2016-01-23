@@ -3,6 +3,8 @@ package com.tistory.devilnangel.system;
 import org.hyperic.sigar.*;
 
 /**
+ * Gather Os, Memory information
+ *
  * @author k, Created on 16. 1. 19.
  */
 public class SystemInfo {
