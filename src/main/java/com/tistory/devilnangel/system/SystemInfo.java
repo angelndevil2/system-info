@@ -66,7 +66,7 @@ public class SystemInfo {
             return sb.toString();
         }
 
-        throw new SigarException("Cpu number is 0");
+        throw new SigarException("Cpu count is 0");
     }
 
     /**

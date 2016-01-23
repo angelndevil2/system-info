@@ -32,7 +32,7 @@ jar {
         attributes("Implementation-Title": project.group + ":" + project.name,
                 "Implementation-Version": version,
                 "Class-Path": "sigar.jar",
-                "Main-Class": project.group+"."+"SystemInfo"
+                "Main-Class": "com.tistory.devilnangel.system.SystemInfo"
         )
     }
 }
