@@ -1,9 +1,9 @@
 package com.tistory.devilnangel.common;
 
-import com.tistory.devilnangel.util.SystemRun;
-import org.apache.commons.exec.CommandLine;
-
-import java.io.IOException;
+import com.tistory.devilnangel.util.SigarInstances;
+import org.hyperic.sigar.ResourceLimit;
+import org.hyperic.sigar.Sigar;
+import org.hyperic.sigar.SigarException;
 
 /**
  *
@@ -13,32 +13,54 @@ import java.io.IOException;
  */
 public class Ulimit {
 
+    private static final Sigar sigar_ = SigarInstances.SIGAR;
+    private ResourceLimit r_limit_;
+
+    public Ulimit() throws SigarException {
+        r_limit_ = sigar_.getResourceLimit();
+    }
+
     /**
-     * block while command 'ulimit -n' is running
-     *
-     * @return shell result string of "ulimit -n"
-     * @throws IOException
-     * @throws InterruptedException
+     * @return open file hard limit
      */
-    public int getOpenFiles() throws IOException, InterruptedException {
+    public long getMaxOpenFilesHardLimit() {
+        return r_limit_.getOpenFilesMax();
+    }
 
-        CommandLine ulimit_open_files = new CommandLine("ulimit-n");
+    /**
+     * @return max user process hard limit
+     */
+    public long getMaxUserProcessHardLimit() {
+        return r_limit_.getProcessesMax();
+    }
 
-        try {
+    /**
+     *
+     * @return max stack size hard limit, -1 = unlimited
+     */
+    public long getMaxStackSizeHardLimit() {
+        return r_limit_.getStackMax();
+    }
 
-            SystemRun.ResultHandler result_handler = SystemRun.execCommand(ulimit_open_files);
-            result_handler.waitFor();
+    /**
+     * @return open file soft limit
+     */
+    public long getMaxOpenFilesSoftLimit() {
+        return r_limit_.getOpenFilesMax();
+    }
 
-            if (result_handler.getExitValue() !=0) {
-                System.err.println("result = " + result_handler.getResultString().trim());
-                return 0;
-            } else {
-                return Integer.valueOf(result_handler.getResultString().trim());
-            }
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
+    /**
+     * @return max user process soft limit
+     */
+    public long getMaxUserProcessSoftLimit() {
+        return r_limit_.getProcessesMax();
+    }
 
-        return 0;
+    /**
+     *
+     * @return max stack size soft limit, -1 = unlimited
+     */
+    public long getMaxStackSizeSoftLimit() {
+        return r_limit_.getStackMax();
     }
 }
