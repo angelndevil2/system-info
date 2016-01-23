@@ -13,9 +13,6 @@ import java.io.IOException;
  */
 public class Ulimit {
 
-    public static final String ULIMIT_COMMAND = "ulimit";
-    public static final String OPTION_OPEN_FILES = "-n";
-
     /**
      * block while command 'ulimit -n' is running
      *
@@ -23,13 +20,25 @@ public class Ulimit {
      * @throws IOException
      * @throws InterruptedException
      */
-    public String getOpenFiles() throws IOException, InterruptedException {
+    public int getOpenFiles() throws IOException, InterruptedException {
 
-        CommandLine ulimit_open_files = new CommandLine(ULIMIT_COMMAND);
-        ulimit_open_files.addArgument(OPTION_OPEN_FILES);
+        CommandLine ulimit_open_files = new CommandLine("ulimit-n");
 
-        SystemRun.ResultHandler result_handler = SystemRun.execCommand(ulimit_open_files);
-        result_handler.waitFor();
-        return result_handler.getResultString();
+        try {
+
+            SystemRun.ResultHandler result_handler = SystemRun.execCommand(ulimit_open_files);
+            result_handler.waitFor();
+
+            if (result_handler.getExitValue() !=0) {
+                System.err.println("result = " + result_handler.getResultString().trim());
+                return 0;
+            } else {
+                return Integer.valueOf(result_handler.getResultString().trim());
+            }
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+
+        return 0;
     }
 }
