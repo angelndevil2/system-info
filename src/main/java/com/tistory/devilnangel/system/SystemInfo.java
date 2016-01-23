@@ -1,5 +1,6 @@
 package com.tistory.devilnangel.system;
 
+import com.tistory.devilnangel.common.Unit;
 import com.tistory.devilnangel.util.SigarInstances;
 import org.hyperic.sigar.*;
 
@@ -74,17 +75,34 @@ public class SystemInfo {
 
     /**
      *
-     * @return String of
-     * {@link Mem#getTotal()}
+     * @param unit KB, MB, GB
+     * @return total memory size string with unit
      * @throws SigarException
      */
-    public static String getMemInfo() throws SigarException {
+    public static String getMemInfo(Unit unit) throws SigarException {
 
         Mem mem = sigar_.getMem();
+        long total = mem.getTotal();
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append(mem.getTotal());
+        switch(unit) {
+            case KB: {
+                sb.append(total / 1024).append(unit.toString());
+                break;
+            }
+            case MB: {
+                sb.append(total / 1024 / 1024).append(unit.toString());
+                break;
+            }
+            case GB:{
+                sb.append(total / 1024 / 1024 / 1024).append(unit.toString());
+                break;
+            }
+            default:{
+                sb.append(total);
+            }
+        }
 
         return sb.toString();
     }
@@ -118,7 +136,7 @@ public class SystemInfo {
         sb.append(MEM_INFO);
         sb.append(" : ");
         try {
-            sb.append(SystemInfo.getMemInfo());
+            sb.append(SystemInfo.getMemInfo(Unit.GB));
         } catch (SigarException e) {
             sb.append("null");
         }
