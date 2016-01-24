@@ -85,7 +85,8 @@ public class SystemInfo {
         Mem mem = sigar_.getMem();
 
         StringBuilder sb = new StringBuilder();
-        sb.append(UnitTranasform.transformLong(mem.getTotal(), unit)).append(unit.toString());
+        sb.append(UnitTranasform.transformLong(mem.getTotal(), unit));
+        if (!Unit.NONE.equals(unit)) sb.append(unit.toString());
 
         return sb.toString();
     }
