@@ -46,14 +46,14 @@ public class Ulimit {
      * @return open file soft limit
      */
     public long getMaxOpenFilesSoftLimit() {
-        return r_limit_.getOpenFilesMax();
+        return r_limit_.getOpenFilesCur();
     }
 
     /**
      * @return max user process soft limit
      */
     public long getMaxUserProcessSoftLimit() {
-        return r_limit_.getProcessesMax();
+        return r_limit_.getProcessesCur();
     }
 
     /**
@@ -61,6 +61,6 @@ public class Ulimit {
      * @return max stack size soft limit, -1 = unlimited
      */
     public long getMaxStackSizeSoftLimit() {
-        return r_limit_.getStackMax();
+        return r_limit_.getStackCur();
     }
 }
