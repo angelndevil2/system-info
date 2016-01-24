@@ -2,6 +2,7 @@ package com.tistory.devilnangel.system;
 
 import com.tistory.devilnangel.common.Unit;
 import com.tistory.devilnangel.util.SigarInstances;
+import com.tistory.devilnangel.util.UnitTranasform;
 import org.hyperic.sigar.*;
 
 /**
@@ -82,27 +83,9 @@ public class SystemInfo {
     public static String getMemInfo(Unit unit) throws SigarException {
 
         Mem mem = sigar_.getMem();
-        long total = mem.getTotal();
 
         StringBuilder sb = new StringBuilder();
-
-        switch(unit) {
-            case KB: {
-                sb.append(total / 1024).append(unit.toString());
-                break;
-            }
-            case MB: {
-                sb.append(total / 1024 / 1024).append(unit.toString());
-                break;
-            }
-            case GB:{
-                sb.append(total / 1024 / 1024 / 1024).append(unit.toString());
-                break;
-            }
-            default:{
-                sb.append(total);
-            }
-        }
+        sb.append(UnitTranasform.transformLong(mem.getTotal(), unit)).append(unit.toString());
 
         return sb.toString();
     }
