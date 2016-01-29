@@ -5,6 +5,9 @@ import com.tistory.devilnangel.util.SigarInstances;
 import com.tistory.devilnangel.util.UnitTranasform;
 import org.hyperic.sigar.*;
 
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+
 /**
  * Gather Os, Memory information
  *
@@ -99,7 +102,7 @@ public class SystemInfo {
         return OperatingSystem.IS_WIN32;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RemoteException, NotBoundException, SigarException {
 
         StringBuilder sb = new StringBuilder();
 
@@ -126,5 +129,6 @@ public class SystemInfo {
         }
 
         System.out.println(sb);
+
     }
 }
