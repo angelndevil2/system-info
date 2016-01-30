@@ -27,12 +27,14 @@ public class CmdOptions {
         options.addOption("d", "base.dir", true, "system-info base directory");
         options.addOption(
                 Option.builder("d").
-                        argName("file").
+                        argName("path").
+                        longOpt("dir").
                         numberOfArgs(1).
                         desc("system-info base directory").build());
         options.addOption(
                 Option.builder("p").
                         argName("port").
+                        longOpt("port").
                         numberOfArgs(1).
                         desc("rmi server port").build());
 /*        options.addOption(
