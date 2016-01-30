@@ -2,6 +2,7 @@ package com.tistory.devilnangel.server;
 
 import com.tistory.devilnangel.common.IRmiCPUInfo;
 import com.tistory.devilnangel.system.SystemInfo;
+import com.tistory.devilnangel.util.PropertiesUtil;
 import lombok.Data;
 import lombok.extern.log4j.Log4j;
 import org.hyperic.sigar.SigarException;
@@ -19,6 +20,21 @@ import java.rmi.server.UnicastRemoteObject;
 @Log4j
 public @Data
 class RmiSystemInfoServer implements IRmiCPUInfo, Runnable {
+
+    private int port;
+
+    public RmiSystemInfoServer() {
+        try {
+            port = PropertiesUtil.getRimServerPort();
+        } catch (Throwable t) {
+            log.warn("rmi.server.port property is malformed");
+            port = 1099;
+        }
+    }
+
+    public RmiSystemInfoServer(int port) {
+        this.port = port;
+    }
 
     @Override
     public String getCPUInfo() throws RemoteException, SigarException {
@@ -58,7 +74,7 @@ class RmiSystemInfoServer implements IRmiCPUInfo, Runnable {
             }
 
             try {
-                LocateRegistry.createRegistry(1099);
+                LocateRegistry.createRegistry(port);
             } catch (RemoteException e){
                 String msg="Problem creating registry: "+e;
                 log.warn(msg);
@@ -67,7 +83,7 @@ class RmiSystemInfoServer implements IRmiCPUInfo, Runnable {
             }
 
             // bind the remote object in the registry
-            Registry registry = LocateRegistry.getRegistry(1099); // use 1099
+            Registry registry = LocateRegistry.getRegistry(port); // use 1099
             registry.bind(this.getClass().getSimpleName(), rmiCPUInfo);
 
             System.out.println("server started.");
