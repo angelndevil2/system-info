@@ -1,14 +1,10 @@
 package com.tistory.devilnangel.client;
 
-import com.tistory.devilnangel.common.IRmiCPUInfo;
-import com.tistory.devilnangel.server.RmiSystemInfoServer;
+import com.tistory.devilnangel.common.IRmiCpuInfo;
 import lombok.Data;
-import org.hyperic.sigar.SigarException;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 
 /**
  * @author k, Created on 16. 1. 30.
@@ -16,11 +12,10 @@ import java.rmi.registry.Registry;
 @Data
 public class RmiSystemInfoClient {
 
-    public String getCpuInfo(String host) throws RemoteException, NotBoundException, SigarException {
+    private final IRmiCpuInfo cpuInfo;
 
-        Registry registry = LocateRegistry.getRegistry(host);
-        IRmiCPUInfo rmiCPUInfo = (IRmiCPUInfo) registry.lookup(RmiSystemInfoServer.class.getSimpleName());
-
-        return rmiCPUInfo.getCPUInfo();
+    public RmiSystemInfoClient(String host) throws RemoteException, NotBoundException {
+        cpuInfo = new com.tistory.devilnangel.client.RmiCpuInfo(host);
     }
+
 }

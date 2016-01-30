@@ -3,6 +3,7 @@ package com.tistory.devilnangel.system;
 import com.tistory.devilnangel.common.Unit;
 import com.tistory.devilnangel.util.SigarInstances;
 import com.tistory.devilnangel.util.UnitTranasform;
+import lombok.Data;
 import org.hyperic.sigar.*;
 
 import java.rmi.NotBoundException;
@@ -13,6 +14,7 @@ import java.rmi.RemoteException;
  *
  * @author k, Created on 16. 1. 19.
  */
+@Data
 public class SystemInfo {
 
     public static final String OS_NAME = "Os Name";
@@ -21,6 +23,7 @@ public class SystemInfo {
 
     private static final Sigar sigar_ = SigarInstances.SIGAR;
     private static final OperatingSystem os_ = OperatingSystem.getInstance();
+    private static final SigarProxy sigarProxy = SigarInstances.SIGAR_PROXY;
 
     /**
      *
@@ -75,6 +78,14 @@ public class SystemInfo {
         }
 
         throw new SigarException("Cpu count is 0");
+    }
+
+    /**
+     *
+     * @return %busy
+     */
+    public static double getCpuBusy() throws SigarException {
+        return 100 - sigarProxy.getCpuPerc().getIdle()*100;
     }
 
     /**

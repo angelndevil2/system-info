@@ -1,14 +1,13 @@
 package com.tistory.devilnangel.server;
 
-import com.tistory.devilnangel.common.IRmiCPUInfo;
-import com.tistory.devilnangel.system.SystemInfo;
+import com.tistory.devilnangel.common.IRmiCpuInfo;
 import com.tistory.devilnangel.util.PropertiesUtil;
 import lombok.Data;
 import lombok.extern.log4j.Log4j;
-import org.hyperic.sigar.SigarException;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -19,9 +18,10 @@ import java.rmi.server.UnicastRemoteObject;
  */
 @Log4j
 public @Data
-class RmiSystemInfoServer implements IRmiCPUInfo, Runnable {
+class RmiSystemInfoServer implements Runnable {
 
     private int port;
+    private RmiCpuInfo rmiCpuInfo = new RmiCpuInfo();
 
     public RmiSystemInfoServer() {
         try {
@@ -32,20 +32,29 @@ class RmiSystemInfoServer implements IRmiCPUInfo, Runnable {
         }
     }
 
+    /**
+     *
+     * @param port rmi port to use
+     */
     public RmiSystemInfoServer(int port) {
         this.port = port;
     }
 
-    @Override
-    public String getCPUInfo() throws RemoteException, SigarException {
-        return SystemInfo.getCpuInfo();
+    private void registerCpuInfo() throws RemoteException, AlreadyBoundException {
+        // export to java runtime
+        IRmiCpuInfo cpuInfo = (IRmiCpuInfo)UnicastRemoteObject.exportObject(rmiCpuInfo, 0);
+        // bind the remote object in the registry
+        Registry registry = LocateRegistry.getRegistry(port); // use 1099
+        registry.bind(rmiCpuInfo.getClass().getSimpleName(), cpuInfo);
     }
 
+    /**
+     *
+     * @throws RemoteException
+     */
     public void startRmiServer() throws RemoteException {
 
         try {
-            // export to java runtime
-            IRmiCPUInfo rmiCPUInfo = (IRmiCPUInfo)UnicastRemoteObject.exportObject(this, 0);
 
             InetAddress localHost=null;
             // Bug 47980 - allow override of local hostname
@@ -82,10 +91,7 @@ class RmiSystemInfoServer implements IRmiCPUInfo, Runnable {
                 System.err.println("Continuing...");
             }
 
-            // bind the remote object in the registry
-            Registry registry = LocateRegistry.getRegistry(port); // use 1099
-            registry.bind(this.getClass().getSimpleName(), rmiCPUInfo);
-
+            registerCpuInfo();
             System.out.println("server started.");
 
         } catch (Exception ex) {
