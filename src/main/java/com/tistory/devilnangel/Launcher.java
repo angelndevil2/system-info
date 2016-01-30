@@ -36,23 +36,10 @@ public class Launcher {
             return;
         }
 
-        if (cmd.hasOption("c")) {
-            System.out.println(SystemInfo.getCpuInfo());
-        }
-
-        if (cmd.hasOption("m")) {
-            System.out.println(SystemInfo.getMemInfo(Unit.GB));
-        }
-
-        if (cmd.hasOption("o")) {
-            System.out.println(SystemInfo.getOsName());
-        }
-
-        if (cmd.hasOption("d")) {
-
-            PropertiesUtil.setDirs(cmd.getOptionValue("d").trim());
-
-        }
+        if (cmd.hasOption("c")) System.out.println(SystemInfo.getCpuInfo());
+        if (cmd.hasOption("m")) System.out.println(SystemInfo.getMemInfo(Unit.GB));
+        if (cmd.hasOption("o")) System.out.println(SystemInfo.getOsName());
+        if (cmd.hasOption("d")) PropertiesUtil.setDirs(cmd.getOptionValue("d").trim());
 
         try {
 
@@ -74,7 +61,21 @@ public class Launcher {
 
         if (cmd.hasOption("s")) {
 
-            RmiSystemInfoServer rmiSystemInfoServer = new RmiSystemInfoServer();
+            RmiSystemInfoServer rmiSystemInfoServer;
+
+            if (cmd.hasOption("p")) {
+
+                try {
+                    int port = Integer.valueOf(cmd.getOptionValue("p"));
+                    rmiSystemInfoServer = new RmiSystemInfoServer(port);
+                } catch (Throwable t) {
+                    System.err.println(cmd.getOptionValue("p") + " is malformed. try default value");
+                    rmiSystemInfoServer = new RmiSystemInfoServer();
+                }
+
+            } else {
+                rmiSystemInfoServer = new RmiSystemInfoServer();
+            }
 
             try {
 

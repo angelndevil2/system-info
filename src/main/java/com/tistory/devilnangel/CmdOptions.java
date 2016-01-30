@@ -30,6 +30,11 @@ public class CmdOptions {
                         argName("file").
                         numberOfArgs(1).
                         desc("system-info base directory").build());
+        options.addOption(
+                Option.builder("p").
+                        argName("port").
+                        numberOfArgs(1).
+                        desc("rmi server port").build());
 /*        options.addOption(
                 Option.builder("X").
                         argName("ms=value").
