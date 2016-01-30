@@ -6,7 +6,9 @@
 
 ## run
 
-        /path/to/system-info-0.0.1/bin/system-info
+        /path/to/system-info-0.0.1/bin/launch
+        
+        -h option will print help message
 
 ## register to local maven
 
