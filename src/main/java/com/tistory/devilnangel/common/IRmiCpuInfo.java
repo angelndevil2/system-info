@@ -1,9 +1,9 @@
 package com.tistory.devilnangel.common;
 
 import org.hyperic.sigar.CpuInfo;
-import org.hyperic.sigar.SigarException;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 /**
  * @author k, Created on 16. 1. 30.
@@ -23,11 +23,11 @@ public interface IRmiCpuInfo extends Remote {
      *
      * @throws SigarException
      */
-    String getCpuInfo() throws SigarException;
+    String getCpuInfo() throws RemoteException;
 
     /**
      *
      * @return %busy
      */
-    double getCpuBusy() throws SigarException;
+    double getCpuBusy() throws RemoteException;
 }

@@ -1,7 +1,6 @@
 package com.tistory.devilnangel.client;
 
 import com.tistory.devilnangel.common.IRmiCpuInfo;
-import org.hyperic.sigar.SigarException;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -22,7 +21,7 @@ public class RmiCpuInfo  implements IRmiCpuInfo {
     }
 
     @Override
-    public String getCpuInfo() throws SigarException {
+    public String getCpuInfo() throws RemoteException {
         return cpuInfo.getCpuInfo();
     }
 
@@ -30,7 +29,7 @@ public class RmiCpuInfo  implements IRmiCpuInfo {
      * @return %busy
      */
     @Override
-    public double getCpuBusy() throws SigarException {
+    public double getCpuBusy() throws RemoteException {
         return cpuInfo.getCpuBusy();
     }
 }
