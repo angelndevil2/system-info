@@ -1,11 +1,13 @@
 package com.tistory.devilnangel.test;
 
+import com.tistory.devilnangel.client.RmiSystemInfoClient;
 import com.tistory.devilnangel.common.Unit;
 import com.tistory.devilnangel.server.RmiSystemInfoServer;
 import com.tistory.devilnangel.system.SystemInfo;
 import org.hyperic.sigar.SigarException;
 import org.junit.Test;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 /**
@@ -38,5 +40,11 @@ public class SystemInfoTest {
         RmiSystemInfoServer s = new RmiSystemInfoServer();
 
         s.main(null);
+    }
+
+    @Test
+    public void RMIClientTest() throws RemoteException, NotBoundException {
+        RmiSystemInfoClient sic = new RmiSystemInfoClient("localhost");
+        System.out.println(sic.getCpuInfo().getCpuBusy());
     }
 }
