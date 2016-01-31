@@ -21,10 +21,7 @@ import static java.lang.System.exit;
 @Data
 public class Launcher {
 
-
-
     private static final CmdOptions options = new CmdOptions();
-    private static final SystemInfo sysInfo = new SystemInfo();
 
     public static void main(String[] args) throws ParseException, SigarException, IOException {
 
