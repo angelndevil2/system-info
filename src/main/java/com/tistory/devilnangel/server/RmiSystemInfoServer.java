@@ -3,7 +3,7 @@ package com.tistory.devilnangel.server;
 import com.tistory.devilnangel.common.IRmiCpuInfo;
 import com.tistory.devilnangel.util.PropertiesUtil;
 import lombok.Data;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -16,7 +16,7 @@ import java.rmi.server.UnicastRemoteObject;
 /**
  * @author k, Created on 16. 1. 30.
  */
-@Log4j
+@Slf4j
 public @Data
 class RmiSystemInfoServer implements Runnable {
 

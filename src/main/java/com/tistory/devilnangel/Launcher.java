@@ -5,6 +5,7 @@ import com.tistory.devilnangel.server.RmiSystemInfoServer;
 import com.tistory.devilnangel.system.SystemInfo;
 import com.tistory.devilnangel.util.PropertiesUtil;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.ParseException;
 import org.hyperic.sigar.SigarException;
@@ -19,6 +20,7 @@ import static java.lang.System.exit;
  * @author k, Created on 16. 1. 30.
  */
 @Data
+@Slf4j
 public class Launcher {
 
     private static final CmdOptions options = new CmdOptions();
