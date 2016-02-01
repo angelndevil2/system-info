@@ -36,24 +36,17 @@ public class Launcher {
         if (cmd.hasOption("c")) System.out.println(SystemInfo.getCpuInfo());
         if (cmd.hasOption("m")) System.out.println(SystemInfo.getMemInfo(Unit.GB));
         if (cmd.hasOption("o")) System.out.println(SystemInfo.getOsName());
-        if (cmd.hasOption("d")) PropertiesUtil.setDirs(cmd.getOptionValue("d").trim());
 
-        try {
+        if (cmd.hasOption("d")) {
+            try {
 
-            PropertiesUtil.loadProperties();
+                PropertiesUtil.setDirs(cmd.getOptionValue("d").trim());
 
-        } catch (IOException e) {
+            } catch (IOException e) {
 
-            System.err.println(PropertiesUtil.getConfDir()+File.separator+PropertiesUtil.AppProperties + " not found. may use -d option" + e);
-            return;
-        }
-
-        try {
-            PropertiesUtil.loadLog4jProperties();
-        } catch (IOException e) {
-
-            System.err.println(PropertiesUtil.getConfDir()+File.separator+PropertiesUtil.Log4jProperties + " not found. may use -d option" + e);
-            return;
+                System.err.println(PropertiesUtil.getConfDir() + File.separator + PropertiesUtil.AppProperties + " not found. may use -d option" + e);
+                return;
+            }
         }
 
         if (cmd.hasOption("s")) {

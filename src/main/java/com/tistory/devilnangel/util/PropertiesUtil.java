@@ -16,7 +16,7 @@ import java.util.Properties;
 @Log4j
 public class PropertiesUtil {
 
-    public static final String Log4jProperties = "log4j.properties";
+    public static final String LogbackConfig = "logback.xml";
     public static final String AppProperties = "system-info.properties";
     @Setter @Getter
     private static String baseDir;
@@ -28,36 +28,29 @@ public class PropertiesUtil {
     @Getter
     private static final Properties properties = new Properties();
 
-    public static void loadProperties() throws IOException {
+    private static void loadProperties() throws IOException {
         properties.load(new FileInputStream(confDir + File.separator + AppProperties));
     }
 
-    public static void loadLog4jProperties() throws IOException {
-        FileInputStream fs = new FileInputStream(confDir + File.separator + Log4jProperties);
-        log4jProperties.load(fs);
+    private static void loadLogbackConfiguration() {
+        System.setProperty("logback.configurationFile", confDir+File.separator+LogbackConfig);
     }
 
-    private static void setDirs() {
+    private static void setDirs() throws IOException {
         if (baseDir == null) baseDir = ".";
         confDir = baseDir+File.separator+File.separator+"conf";
         binDir = baseDir+File.separator+File.separator+"bin";
+
+        loadProperties();
+        if (Boolean.valueOf(properties.getProperty("logback.use"))) loadLogbackConfiguration();
     }
 
-    public static void setDirs(@NonNull String bd) {
+    public static void setDirs(@NonNull String bd) throws IOException {
         baseDir = bd;
         setDirs();
     }
 
     public static int getRimServerPort() {
         return Integer.valueOf(properties.getProperty("rmi.server.port", "1099"));
-    }
-
-    static {
-        try {
-            baseDir = new File("..").getCanonicalPath();
-        } catch (IOException e) {
-            log.warn("base directory is not set", e);
-        }
-        setDirs();
     }
 }
