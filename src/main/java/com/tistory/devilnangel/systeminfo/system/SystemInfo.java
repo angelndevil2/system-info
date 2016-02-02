@@ -1,8 +1,8 @@
-package com.tistory.devilnangel.system;
+package com.tistory.devilnangel.systeminfo.system;
 
-import com.tistory.devilnangel.common.Unit;
-import com.tistory.devilnangel.util.SigarInstances;
-import com.tistory.devilnangel.util.UnitTranasform;
+import com.tistory.devilnangel.systeminfo.common.Unit;
+import com.tistory.devilnangel.systeminfo.util.UnitTranasform;
+import com.tistory.devilnangel.systeminfo.util.SigarInstances;
 import lombok.Data;
 import org.hyperic.sigar.*;
 

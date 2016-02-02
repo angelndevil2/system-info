@@ -1,6 +1,6 @@
-package com.tistory.devilnangel.test;
+package com.tistory.devilnangel.systeminfo.test;
 
-import com.tistory.devilnangel.system.Ulimit;
+import com.tistory.devilnangel.systeminfo.system.Ulimit;
 import org.hyperic.sigar.SigarException;
 import org.junit.Test;
 

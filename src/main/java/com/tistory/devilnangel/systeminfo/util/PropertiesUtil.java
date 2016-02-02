@@ -1,4 +1,4 @@
-package com.tistory.devilnangel.util;
+package com.tistory.devilnangel.systeminfo.util;
 
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.joran.JoranConfigurator;

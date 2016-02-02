@@ -1,6 +1,6 @@
-package com.tistory.devilnangel.test;
+package com.tistory.devilnangel.systeminfo.test;
 
-import com.tistory.devilnangel.common.SystemMessages;
+import com.tistory.devilnangel.systeminfo.common.SystemMessages;
 import org.junit.Test;
 
 /**

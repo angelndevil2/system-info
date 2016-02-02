@@ -1,4 +1,4 @@
-package com.tistory.devilnangel.common;
+package com.tistory.devilnangel.systeminfo.common;
 
 import javax.management.*;
 import javax.management.openmbean.TabularData;

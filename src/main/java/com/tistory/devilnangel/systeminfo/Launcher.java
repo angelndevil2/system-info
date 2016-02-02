@@ -1,9 +1,9 @@
-package com.tistory.devilnangel;
+package com.tistory.devilnangel.systeminfo;
 
-import com.tistory.devilnangel.common.Unit;
-import com.tistory.devilnangel.server.RmiSystemInfoServer;
-import com.tistory.devilnangel.system.SystemInfo;
-import com.tistory.devilnangel.util.PropertiesUtil;
+import com.tistory.devilnangel.systeminfo.common.Unit;
+import com.tistory.devilnangel.systeminfo.server.RmiSystemInfoServer;
+import com.tistory.devilnangel.systeminfo.system.SystemInfo;
+import com.tistory.devilnangel.systeminfo.util.PropertiesUtil;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.cli.CommandLine;

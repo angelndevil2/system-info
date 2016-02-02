@@ -1,7 +1,7 @@
-package com.tistory.devilnangel.server;
+package com.tistory.devilnangel.systeminfo.server;
 
-import com.tistory.devilnangel.common.IRmiCpuInfo;
-import com.tistory.devilnangel.system.SystemInfo;
+import com.tistory.devilnangel.systeminfo.common.IRmiCpuInfo;
+import com.tistory.devilnangel.systeminfo.system.SystemInfo;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.hyperic.sigar.SigarException;

@@ -1,6 +1,6 @@
-package com.tistory.devilnangel.test;
+package com.tistory.devilnangel.systeminfo.test;
 
-import com.tistory.devilnangel.util.SystemRun;
+import com.tistory.devilnangel.systeminfo.util.SystemRun;
 import org.junit.Test;
 
 /**

@@ -1,6 +1,6 @@
-package com.tistory.devilnangel.util;
+package com.tistory.devilnangel.systeminfo.util;
 
-import com.tistory.devilnangel.common.Unit;
+import com.tistory.devilnangel.systeminfo.common.Unit;
 
 /**
  * @author k, Created on 16. 1. 24.

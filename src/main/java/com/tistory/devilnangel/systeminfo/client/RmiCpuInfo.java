@@ -1,6 +1,6 @@
-package com.tistory.devilnangel.client;
+package com.tistory.devilnangel.systeminfo.client;
 
-import com.tistory.devilnangel.common.IRmiCpuInfo;
+import com.tistory.devilnangel.systeminfo.common.IRmiCpuInfo;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -17,7 +17,7 @@ public class RmiCpuInfo  implements IRmiCpuInfo {
     public RmiCpuInfo(String host) throws RemoteException, NotBoundException {
 
         Registry registry = LocateRegistry.getRegistry(host);
-        cpuInfo = (IRmiCpuInfo) registry.lookup(com.tistory.devilnangel.server.RmiCpuInfo.class.getSimpleName());
+        cpuInfo = (IRmiCpuInfo) registry.lookup(com.tistory.devilnangel.systeminfo.server.RmiCpuInfo.class.getSimpleName());
     }
 
     @Override

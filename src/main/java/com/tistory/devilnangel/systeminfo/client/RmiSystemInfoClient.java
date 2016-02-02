@@ -1,6 +1,6 @@
-package com.tistory.devilnangel.client;
+package com.tistory.devilnangel.systeminfo.client;
 
-import com.tistory.devilnangel.common.IRmiCpuInfo;
+import com.tistory.devilnangel.systeminfo.common.IRmiCpuInfo;
 import lombok.Data;
 
 import java.rmi.NotBoundException;
@@ -15,7 +15,7 @@ public class RmiSystemInfoClient {
     private final IRmiCpuInfo cpuInfo;
 
     public RmiSystemInfoClient(String host) throws RemoteException, NotBoundException {
-        cpuInfo = new com.tistory.devilnangel.client.RmiCpuInfo(host);
+        cpuInfo = new RmiCpuInfo(host);
     }
 
 }

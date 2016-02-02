@@ -1,4 +1,4 @@
-package com.tistory.devilnangel.util;
+package com.tistory.devilnangel.systeminfo.util;
 
 import org.apache.commons.exec.*;
 

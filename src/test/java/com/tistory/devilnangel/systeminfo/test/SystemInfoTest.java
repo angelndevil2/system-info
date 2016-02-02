@@ -1,9 +1,9 @@
-package com.tistory.devilnangel.test;
+package com.tistory.devilnangel.systeminfo.test;
 
-import com.tistory.devilnangel.client.RmiSystemInfoClient;
-import com.tistory.devilnangel.common.Unit;
-import com.tistory.devilnangel.server.RmiSystemInfoServer;
-import com.tistory.devilnangel.system.SystemInfo;
+import com.tistory.devilnangel.systeminfo.client.RmiSystemInfoClient;
+import com.tistory.devilnangel.systeminfo.common.Unit;
+import com.tistory.devilnangel.systeminfo.server.RmiSystemInfoServer;
+import com.tistory.devilnangel.systeminfo.system.SystemInfo;
 import org.hyperic.sigar.SigarException;
 import org.junit.Test;
 

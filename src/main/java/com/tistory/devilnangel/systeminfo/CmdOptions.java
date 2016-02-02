@@ -1,4 +1,4 @@
-package com.tistory.devilnangel;
+package com.tistory.devilnangel.systeminfo;
 
 import lombok.AccessLevel;
 import lombok.Data;

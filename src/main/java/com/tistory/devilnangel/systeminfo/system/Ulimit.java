@@ -1,6 +1,6 @@
-package com.tistory.devilnangel.system;
+package com.tistory.devilnangel.systeminfo.system;
 
-import com.tistory.devilnangel.util.SigarInstances;
+import com.tistory.devilnangel.systeminfo.util.SigarInstances;
 import org.hyperic.sigar.ResourceLimit;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
