@@ -6,7 +6,7 @@ apply plugin: 'maven'
 apply plugin: 'application'
 
 sourceCompatibility = 1.5
-mainClassName = "com.tistory.devilnangel.Launcher"
+mainClassName = "com.tistory.devilnangel.systeminfo.Launcher"
 
 startScripts {
     classpath = files("*")
@@ -48,7 +48,7 @@ jar {
         attributes("Implementation-Title": project.group + ":" + project.name,
                 "Implementation-Version": version,
                 "Class-Path": "sigar-"+sigarversion+".jar",
-                "Main-Class": "com.tistory.devilnangel.system.SystemInfo"
+                "Main-Class": "com.tistory.devilnangel.systeminfo.Launcher"
         )
     }
 }
