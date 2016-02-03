@@ -4,6 +4,8 @@ import com.tistory.devilnangel.systeminfo.system.Ulimit;
 import org.hyperic.sigar.SigarException;
 import org.junit.Test;
 
+import java.rmi.RemoteException;
+
 /**
  * @author k, Created on 16. 1. 24.
  */
@@ -11,7 +13,7 @@ public class UlimitTest {
 
     private Ulimit ulimit_;
 
-    public UlimitTest() throws SigarException {
+    public UlimitTest() throws SigarException, RemoteException {
        ulimit_ = new Ulimit();
     }
 

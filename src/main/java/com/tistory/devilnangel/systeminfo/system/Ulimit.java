@@ -1,5 +1,6 @@
 package com.tistory.devilnangel.systeminfo.system;
 
+import com.tistory.devilnangel.systeminfo.common.IRmiUlimitInfo;
 import com.tistory.devilnangel.systeminfo.util.SigarInstances;
 import org.hyperic.sigar.ResourceLimit;
 import org.hyperic.sigar.Sigar;
@@ -11,10 +12,10 @@ import org.hyperic.sigar.SigarException;
  *
  * @author k, Created on 16. 1. 23.
  */
-public class Ulimit {
+public class Ulimit implements IRmiUlimitInfo {
 
-    private static final Sigar sigar_ = SigarInstances.SIGAR;
-    private ResourceLimit r_limit_;
+    private transient static final Sigar sigar_ = SigarInstances.SIGAR;
+    private transient ResourceLimit r_limit_;
 
     public Ulimit() throws SigarException {
         r_limit_ = sigar_.getResourceLimit();

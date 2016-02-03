@@ -1,9 +1,12 @@
 package com.tistory.devilnangel.systeminfo.server;
 
 import com.tistory.devilnangel.systeminfo.common.IRmiCpuInfo;
+import com.tistory.devilnangel.systeminfo.common.IRmiUlimitInfo;
+import com.tistory.devilnangel.systeminfo.system.Ulimit;
 import com.tistory.devilnangel.systeminfo.util.PropertiesUtil;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.hyperic.sigar.SigarException;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -22,30 +25,50 @@ class RmiSystemInfoServer implements Runnable {
 
     private int port;
     private RmiCpuInfo rmiCpuInfo = new RmiCpuInfo();
+    private final Ulimit ulimitInfo;
 
-    public RmiSystemInfoServer() {
+    public RmiSystemInfoServer() throws SigarException, RemoteException {
         try {
             port = PropertiesUtil.getRimServerPort();
         } catch (Throwable t) {
             log.warn("rmi.server.port property is malformed");
             port = 1099;
         }
+
+        ulimitInfo = new Ulimit();
     }
 
     /**
      *
      * @param port rmi port to use
      */
-    public RmiSystemInfoServer(int port) {
+    public RmiSystemInfoServer(int port) throws SigarException, RemoteException {
         this.port = port;
+        ulimitInfo = new Ulimit();
     }
 
+    /**
+     * @throws RemoteException
+     * @throws AlreadyBoundException
+     */
     private void registerCpuInfo() throws RemoteException, AlreadyBoundException {
         // export to java runtime
         IRmiCpuInfo cpuInfo = (IRmiCpuInfo)UnicastRemoteObject.exportObject(rmiCpuInfo, 0);
         // bind the remote object in the registry
         Registry registry = LocateRegistry.getRegistry(port); // use 1099
-        registry.bind(rmiCpuInfo.getClass().getSimpleName(), cpuInfo);
+        registry.bind(RmiCpuInfo.class.getSimpleName(), cpuInfo);
+    }
+
+    /**
+     * @throws RemoteException
+     * @throws AlreadyBoundException
+     */
+    private void registerUlimitInfo() throws RemoteException, AlreadyBoundException {
+        // export to java runtime
+        IRmiUlimitInfo ulimitInfo = (IRmiUlimitInfo)UnicastRemoteObject.exportObject(this.ulimitInfo, 0);
+        // bind the remote object in the registry
+        Registry registry = LocateRegistry.getRegistry(port); // use 1099
+        registry.bind(Ulimit.class.getSimpleName(), ulimitInfo);
     }
 
     /**
@@ -58,7 +81,7 @@ class RmiSystemInfoServer implements Runnable {
 
             InetAddress localHost=null;
             // Bug 47980 - allow override of local hostname
-            String host = System.getProperties().getProperty("java.rmi.server.hostname"); // $NON-NLS-1$
+            String host = System.getProperty("java.rmi.server.hostname"); // $NON-NLS-1$
             try {
                 if( host==null ) {
                     log.info("System property 'java.rmi.server.hostname' is not defined, using localHost address");
@@ -92,16 +115,19 @@ class RmiSystemInfoServer implements Runnable {
             }
 
             registerCpuInfo();
+            registerUlimitInfo();
             System.out.println("server started.");
-
         } catch (Exception ex) {
             // Throw an Exception to ensure caller knows ...
             throw new RemoteException("Cannot start. ", ex);
         }
     }
 
+    public void stopServer() {
 
-    public static void main(String[] args) throws RemoteException {
+    }
+
+    public static void main(String[] args) throws RemoteException, SigarException {
 
         RmiSystemInfoServer obj = new RmiSystemInfoServer();
 
