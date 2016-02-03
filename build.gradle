@@ -53,16 +53,45 @@ jar {
     }
 }
 
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from tasks.javadoc.destinationDir
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}
+
 uploadArchives {
     repositories {
         mavenDeployer {
 
             repository(url: "file://localhost/"+System.properties['user.home']+"/.m2/repository/")
             pom.project {
+                url 'https://github.com/angelndevil2/system-info'
+                description 'system information getter and support rmi server'
+
                 licenses {
                     license {
                         name 'The Apache Software License, Version 2.0'
                         url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+                name project.name
+
+                developers {
+                    developer {
+                        id 'angelndevil2'
+                        name 'angelndevil2'
+                        email 'angelndevil2@gamail.com'
                     }
                 }
             }
@@ -70,3 +99,4 @@ uploadArchives {
     }
 }
 
+apply from: 'maven-push.gradle'
