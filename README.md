@@ -24,3 +24,16 @@
 
         /path/to/system-info-0.0.1/bin/launch -s -p 10999
         
+## java ex
+
+```java
+RmiSystemInfoServer s = new RmiSystemInfoServer();
+System.setProperty("java.rmi.server.hostname", "localhost");
+s.startRmiServer();
+
+RmiSystemInfoClient sic = new RmiSystemInfoClient("localhost");
+System.out.println(sic.getCpuInfo().getCpuBusy());
+
+System.out.println(sic.getUlimitInfo().getMaxOpenFilesHardLimit());
+```
+        
