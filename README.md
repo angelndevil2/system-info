@@ -37,6 +37,6 @@ s.startRmiServer();
 RmiSystemInfoClient sic = new RmiSystemInfoClient("localhost");
 System.out.println(sic.getCpuInfo().getCpuBusy());
 
-System.out.println(sic.getUlimitInfo().getMaxOpenFilesHardLimit());
+System.out.println(sic.getUlimitInfo().getOpenFilesHardLimit());
 ```
         
