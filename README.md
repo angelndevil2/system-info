@@ -26,11 +26,14 @@
         
 ## java ex
 
+### server
 ```java
 RmiSystemInfoServer s = new RmiSystemInfoServer();
 System.setProperty("java.rmi.server.hostname", "localhost");
 s.startRmiServer();
-
+```
+### client
+```java
 RmiSystemInfoClient sic = new RmiSystemInfoClient("localhost");
 System.out.println(sic.getCpuInfo().getCpuBusy());
 
