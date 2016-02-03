@@ -23,47 +23,47 @@ public class RmiUlimitInfo implements IRmiUlimitInfo {
      * @return open file hard limit
      */
     @Override
-    public long getMaxOpenFilesHardLimit() throws RemoteException {
-        return ulimitInfo.getMaxOpenFilesHardLimit();
+    public long getOpenFilesHardLimit() throws RemoteException {
+        return ulimitInfo.getOpenFilesHardLimit();
     }
 
     /**
      * @return max user process hard limit
      */
     @Override
-    public long getMaxUserProcessHardLimit() throws RemoteException {
-        return ulimitInfo.getMaxUserProcessHardLimit();
+    public long getUserProcessHardLimit() throws RemoteException {
+        return ulimitInfo.getUserProcessHardLimit();
     }
 
     /**
      * @return max stack size hard limit, -1 = unlimited
      */
     @Override
-    public long getMaxStackSizeHardLimit() throws RemoteException {
-        return ulimitInfo.getMaxStackSizeHardLimit();
+    public long getStackSizeHardLimit() throws RemoteException {
+        return ulimitInfo.getStackSizeHardLimit();
     }
 
     /**
      * @return open file soft limit
      */
     @Override
-    public long getMaxOpenFilesSoftLimit() throws RemoteException {
-        return ulimitInfo.getMaxOpenFilesSoftLimit();
+    public long getOpenFilesSoftLimit() throws RemoteException {
+        return ulimitInfo.getOpenFilesSoftLimit();
     }
 
     /**
      * @return max user process soft limit
      */
     @Override
-    public long getMaxUserProcessSoftLimit() throws RemoteException {
-        return ulimitInfo.getMaxUserProcessSoftLimit();
+    public long getUserProcessSoftLimit() throws RemoteException {
+        return ulimitInfo.getUserProcessSoftLimit();
     }
 
     /**
      * @return max stack size soft limit, -1 = unlimited
      */
     @Override
-    public long getMaxStackSizeSoftLimit() throws RemoteException {
-        return ulimitInfo.getMaxStackSizeSoftLimit();
+    public long getStackSizeSoftLimit() throws RemoteException {
+        return ulimitInfo.getStackSizeSoftLimit();
     }
 }

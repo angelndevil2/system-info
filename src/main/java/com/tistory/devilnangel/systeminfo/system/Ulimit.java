@@ -24,14 +24,16 @@ public class Ulimit implements IRmiUlimitInfo {
     /**
      * @return open file hard limit
      */
-    public long getMaxOpenFilesHardLimit() {
+    @Override
+    public long getOpenFilesHardLimit() {
         return r_limit_.getOpenFilesMax();
     }
 
     /**
      * @return max user process hard limit
      */
-    public long getMaxUserProcessHardLimit() {
+    @Override
+    public long getUserProcessHardLimit() {
         return r_limit_.getProcessesMax();
     }
 
@@ -39,21 +41,24 @@ public class Ulimit implements IRmiUlimitInfo {
      *
      * @return max stack size hard limit, -1 = unlimited
      */
-    public long getMaxStackSizeHardLimit() {
+    @Override
+    public long getStackSizeHardLimit() {
         return r_limit_.getStackMax();
     }
 
     /**
      * @return open file soft limit
      */
-    public long getMaxOpenFilesSoftLimit() {
+    @Override
+    public long getOpenFilesSoftLimit() {
         return r_limit_.getOpenFilesCur();
     }
 
     /**
      * @return max user process soft limit
      */
-    public long getMaxUserProcessSoftLimit() {
+    @Override
+    public long getUserProcessSoftLimit() {
         return r_limit_.getProcessesCur();
     }
 
@@ -61,7 +66,8 @@ public class Ulimit implements IRmiUlimitInfo {
      *
      * @return max stack size soft limit, -1 = unlimited
      */
-    public long getMaxStackSizeSoftLimit() {
+    @Override
+    public long getStackSizeSoftLimit() {
         return r_limit_.getStackCur();
     }
 }

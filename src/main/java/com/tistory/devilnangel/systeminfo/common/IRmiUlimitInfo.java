@@ -11,32 +11,32 @@ public interface IRmiUlimitInfo extends Remote {
     /**
      * @return open file hard limit
      */
-    long getMaxOpenFilesHardLimit() throws RemoteException;
+    long getOpenFilesHardLimit() throws RemoteException;
 
     /**
      * @return max user process hard limit
      */
-    long getMaxUserProcessHardLimit() throws RemoteException;
+    long getUserProcessHardLimit() throws RemoteException;
 
     /**
      *
      * @return max stack size hard limit, -1 = unlimited
      */
-    long getMaxStackSizeHardLimit() throws RemoteException;
+    long getStackSizeHardLimit() throws RemoteException;
 
     /**
      * @return open file soft limit
      */
-    long getMaxOpenFilesSoftLimit() throws RemoteException;
+    long getOpenFilesSoftLimit() throws RemoteException;
 
     /**
      * @return max user process soft limit
      */
-    long getMaxUserProcessSoftLimit() throws RemoteException;
+    long getUserProcessSoftLimit() throws RemoteException;
 
     /**
      *
      * @return max stack size soft limit, -1 = unlimited
      */
-    long getMaxStackSizeSoftLimit() throws RemoteException;
+    long getStackSizeSoftLimit() throws RemoteException;
 }
