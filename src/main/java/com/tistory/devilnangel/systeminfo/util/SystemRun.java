@@ -14,13 +14,11 @@ import java.io.IOException;
  *
  *  public String result_or_error;
  *
- *  @Override
  *  public void onProcessComplete(int exitValue) {
  *      super.onProcessComplete(exitValue);
  *      result_or_error = getResultString();
  *  }
  *
- *  @Override
  *  public void onProcessFailed(ExecuteException e) {
  *      super.onProcessFailed(e);
  *      result_or_error = getResultString();

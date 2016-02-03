@@ -16,18 +16,19 @@ public interface IRmiCpuInfo extends Remote {
      * @return String of
      * {@link CpuInfo#getVendor()} +
      * {@link CpuInfo#getModel()} ()} +
-     * {@link CpuInfo#getTotalCores())
+     * {@link CpuInfo#getTotalCores()}
      * <br />
      *
      * ex. Intel Core(TM) i7-4930K CPU @ 3.40GHz X 12
      *
-     * @throws SigarException
+     * @throws RemoteException
      */
     String getCpuInfo() throws RemoteException;
 
     /**
      *
      * @return %busy
+     * @throws RemoteException
      */
     double getCpuBusy() throws RemoteException;
 }
