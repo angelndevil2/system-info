@@ -1,4 +1,6 @@
-# system-info
+[![Build Status](https://travis-ci.org/angelndevil2/system-info.svg?branch=master)](https://travis-ci.org/angelndevil2/system-info)
+
+#system-info
 
 ## make zip distribution
 
