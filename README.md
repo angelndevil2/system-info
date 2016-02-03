@@ -15,3 +15,12 @@
 ## register to local maven
 
         gradlew or gradlew.bat uploadArchives
+
+## run in rmi server mode with default port (1099)
+
+        /path/to/system-info-0.0.1/bin/launch -s
+        
+## run in rmi server mode with port 10999
+
+        /path/to/system-info-0.0.1/bin/launch -s -p 10999
+        
