@@ -6,6 +6,7 @@
 
         ./gradlew distZip
 
+[download binary zip](http://search.maven.org/remotecontent?filepath=com/tistory/devilnangel/system-info/0.0.1/system-info-0.0.1.zip) from http://search.maven.org
 ## run
 
         /path/to/system-info-0.0.1/bin/launch
