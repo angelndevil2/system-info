@@ -102,7 +102,7 @@ class RmiSystemInfoServer implements Runnable {
             if (localHost.isSiteLocalAddress()){
                 // should perhaps be log.warn, but this causes the client-server test to fail
                 log.info("IP address is a site-local address; this may cause problems with remote access.\n"
-                        + "\tCan be overridden by defining the system property 'java.rmi.server.hostname' - see jmeter-server script file");
+                        + "\tCan be overridden by defining the system property 'java.rmi.server.hostname'");
             }
 
             try {
