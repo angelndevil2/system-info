@@ -56,7 +56,7 @@ class RmiSystemInfoServer implements Runnable {
         IRmiCpuInfo cpuInfo = (IRmiCpuInfo)UnicastRemoteObject.exportObject(rmiCpuInfo, 0);
         // bind the remote object in the registry
         Registry registry = LocateRegistry.getRegistry(port); // use 1099
-        registry.bind(RmiCpuInfo.class.getSimpleName(), cpuInfo);
+        registry.bind(IRmiCpuInfo.class.getCanonicalName(), cpuInfo);
     }
 
     /**
@@ -68,7 +68,7 @@ class RmiSystemInfoServer implements Runnable {
         IRmiUlimitInfo ulimitInfo = (IRmiUlimitInfo)UnicastRemoteObject.exportObject(this.ulimitInfo, 0);
         // bind the remote object in the registry
         Registry registry = LocateRegistry.getRegistry(port); // use 1099
-        registry.bind(Ulimit.class.getSimpleName(), ulimitInfo);
+        registry.bind(IRmiUlimitInfo.class.getCanonicalName(), ulimitInfo);
     }
 
     /**

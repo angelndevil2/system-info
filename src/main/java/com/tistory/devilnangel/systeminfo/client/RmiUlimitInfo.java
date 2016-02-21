@@ -17,7 +17,7 @@ public class RmiUlimitInfo implements IRmiUlimitInfo {
     public RmiUlimitInfo(String host) throws RemoteException, NotBoundException {
 
         Registry registry = LocateRegistry.getRegistry(host);
-        ulimitInfo = (IRmiUlimitInfo) registry.lookup(com.tistory.devilnangel.systeminfo.system.Ulimit.class.getSimpleName());
+        ulimitInfo = (IRmiUlimitInfo) registry.lookup(IRmiUlimitInfo.class.getCanonicalName());
     }
     /**
      * @return open file hard limit

@@ -17,7 +17,7 @@ public class RmiCpuInfo  implements IRmiCpuInfo {
     public RmiCpuInfo(String host) throws RemoteException, NotBoundException {
 
         Registry registry = LocateRegistry.getRegistry(host);
-        cpuInfo = (IRmiCpuInfo) registry.lookup(com.tistory.devilnangel.systeminfo.server.RmiCpuInfo.class.getSimpleName());
+        cpuInfo = (IRmiCpuInfo) registry.lookup(IRmiCpuInfo.class.getCanonicalName());
     }
 
     @Override
